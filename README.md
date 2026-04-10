@@ -1,4 +1,4 @@
-# AnomalyX v1.0 — SOC Intelligence Dashboard
+# AnomalyX: Network Intrusion Detection and Analyst Dashboard
 
 A network traffic anomaly detection tool I built using the NSL-KDD dataset and a Random Forest classifier. Started as a basic binary classifier, v1 adds the intelligence layer on top — attack categorization, MITRE mapping, behavior analysis. Built for SOC-relevant analysis, not just binary classification.
 
