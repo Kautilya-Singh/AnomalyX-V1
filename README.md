@@ -1,6 +1,12 @@
-# AnomalyX v2.0 — SOC Intelligence Dashboard
+# AnomalyX v1.0 — SOC Intelligence Dashboard
 
-Network traffic anomaly detection powered by Random Forest on NSL-KDD dataset. Built for SOC-relevant analysis, not just binary classification.
+A network traffic anomaly detection tool I built using the NSL-KDD dataset and a Random Forest classifier. Started as a basic binary classifier, v1 adds the intelligence layer on top — attack categorization, MITRE mapping, behavior analysis. Built for SOC-relevant analysis, not just binary classification.
+
+## What is does 
+- MITRE ATT&CK technique mapping for each detected attack class
+- Source behavior panel — failed logins, brute-force signals, root shell activations, scan-like bursts, SYN error rates
+- Top targeted services and protocol breakdown for attack traffic
+- Auto-generated incident summary + FP/FN explanation
 
 ## Features
 
@@ -9,18 +15,6 @@ Network traffic anomaly detection powered by Random Forest on NSL-KDD dataset. B
 - Binary prediction: Normal / Attack
 - Accuracy, Precision, Recall, F1-Score
 - Confusion matrix with TP/TN/FP/FN
-
-### v2.0 Additions
-| Feature | Description |
-|---|---|
-| Attack Category | DoS / Probe / R2L / U2R / Unknown — not just "attack vs normal" |
-| Severity Tagging | CRITICAL / HIGH / MEDIUM / LOW per detected category |
-| MITRE ATT&CK Mapping | Relevant technique IDs (T1046, T1110, T1068, etc.) per attack class |
-| Source Behavior Panel | Failed logins, brute-force indicators, root shell activations, scan-like connections, SYN error rates |
-| Top Services/Protocols | Service and protocol frequency for attack traffic |
-| Incident Conclusion | Auto-generated SOC-style summary paragraph |
-| FP/FN Explanation | Analyst-readable false positive and false negative explanations with rates |
-| Upgraded Alerts Log | Alerts now include attack category and severity |
 
 ## Architecture
 
@@ -42,7 +36,7 @@ Dataset/                       — NSL-KDD train/test files
 - **Test set**: KDDTest+ (~22k samples)
 - **Typical accuracy**: ~99% on KDDTest+
 
-## Attack Categories (NSL-KDD)
+## Attack Categories
 
 | Category | Description | Severity | Example Attacks |
 |---|---|---|---|
@@ -65,4 +59,4 @@ python ../train.py --train KDDTrain+.txt --test KDDTest+.txt
 python app.py
 ```
 
-Then open http://localhost:5000 and upload a KDDTest+.txt file.
+Then open http://localhost:5000 and upload a .txt/.csv file contailing network logs.
